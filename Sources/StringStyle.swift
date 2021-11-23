@@ -124,7 +124,9 @@ extension StringStyle {
         paragraph.paragraphSpacingBefore = paragraphSpacingBefore ?? paragraph.paragraphSpacingBefore
         paragraph.hyphenationFactor = hyphenationFactor ?? paragraph.hyphenationFactor
         paragraph.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation ?? paragraph.allowsDefaultTighteningForTruncation
-
+        if #available(iOS 14.0, *) {
+          paragraph.lineBreakStrategy = .hangulWordPriority
+        }
         if paragraph != NSParagraphStyle.default {
             theAttributes.update(possibleValue: paragraph, forKey: .paragraphStyle)
         }
